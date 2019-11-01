@@ -7,7 +7,7 @@
  *  - VL53L0X distance sensor
  *  - sound sensor SEN-12642 (x2)
  *  - PIR sensor 
- *  - 
+ *  - Buttons (cabinet movements)
  */
 #include "Adafruit_VL53L0X.h"
 Adafruit_VL53L0X lox = Adafruit_VL53L0X();
