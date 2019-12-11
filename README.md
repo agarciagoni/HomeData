@@ -5,7 +5,7 @@ At the moment the sensors we are using include:
 
    - Ultrasonic Sensor Y401
    - VL53L0X distance_sonic sensor
-   - Sound sensor x1
+   - Sound sensor SEN-12642 x1
    - PIR sensor x1
    - Buttons x7 ( 3 backside,2 upper cabinet left, 2 upper cabinet right)
    - terMITes x1 (Measuring Temperature, Humidity and Light)
