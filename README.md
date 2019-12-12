@@ -1,5 +1,6 @@
 # Kitchen-Sensors
-Here we include the first codes realted to data gathering from the sensors deployed on the Piccolo Kitchen
+Here we include the first codes realted to data gathering from the sensors deployed on the Piccolo Kitchen Project:
+https://www.media.mit.edu/projects/piccolo-kitchen/overview/
 
 At the moment the sensors we are using include:
 
