@@ -107,12 +107,7 @@ void loop() {
 //Distance sensor time to travel
   VL53L0X_RangingMeasurementData_t measure;
   lox.rangingTest(&measure, false); // pass in 'true' to get debug data printout!
-//  if (measure.RangeStatus != 4) {  // phase failures have incorrect data
-//    Serial.print(" Distance light (mm): ");
-//    Serial.print(measure.RangeMilliMeter);
-//  } else {
-//    Serial.print(" out of range ");
-//  }
+
 //Ultrasonic
  distance_sonic = sonar.ping_cm();           //  Ask NewPing to trigger, fetch echo and calculate distance in cm
 ////   Prints the distance on the Serial Monitor
@@ -139,7 +134,7 @@ Serial.print(measure.RangeMilliMeter);Serial.print(",");
     // Serial.print("Position: "); 
      Serial.print("None,");    
   }
-  //delay(300); //Need this delay to not interfere with the analog reading. Look more into this.
+
   
 
     
