@@ -1,5 +1,5 @@
 # Kitchen-Sensors
-## terMITes
+### terMITes ###
 
 Here i will include the codes regarding the terMITes.
 
