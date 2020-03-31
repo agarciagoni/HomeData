@@ -20,7 +20,7 @@ data_kit=pd.DataFrame(columns=['Time',
 file_name='KitchenData_'+datetime.now().strftime('%m_%d_%H_%M_%S')+'.csv'
 
 ####### MODIFY THE FOLLOWING TWO LINES ##########################################################
-UDP_IP = "18.21.149.207" #Use the same address that was specified on the UDP Settings.
+UDP_IP = "" #Use the same address that was specified on the UDP Settings.
 UDP_PORT = 8888 #Use the same port that was specified on the UDP Settings.
 #################################################################################################
 
