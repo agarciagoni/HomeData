@@ -1,4 +1,4 @@
-# Kitchen-Sensors
+# Home Data -Sensors
 ### terMITes ###
 
 Here i will include the codes regarding the terMITes.
