@@ -1,4 +1,4 @@
-# Home Data -Sensors
+# Home Data - Sensors
 
 ### Data
 
