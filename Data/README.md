@@ -2,6 +2,6 @@
 
 ### Data
 
-The python scripts get the data from the arduino and the terMITes and write csv files. Depending on the number of termites included they are named as *_TX.py.
+Here we included samples of data recorded from the sensors and soon python codes to first analyze the gathered data.
 
-More scripts will be uploaded as more sensors and termites are included.
+On the mean time, find more info about visualisation of this data in this repo [HomeData Visuas](https://github.com/agarciagoni/HomeData-Visuals)
