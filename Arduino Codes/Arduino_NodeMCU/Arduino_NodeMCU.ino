@@ -4,7 +4,7 @@
  *  First script to try to put several sensors in the Piccolo Kitchen
  *  Sensors included and prepared for use in the kitchen, with its cables: 
  *  - Ultrasonic Sensor Y401
- *  - VL53L0X distance_sonic sensorp
+ *  - VL53L0X distance_sonic sensor
  *  - Sound sensor x2 (2nd with 100k resistor and no R3).
  *  - PIR sensor x1
  *  - Buttons (cabinet movements)
@@ -19,8 +19,8 @@ Adafruit_VL53L0X lox = Adafruit_VL53L0X();
 
 ////   Ultrasonic sensor
   // defines pins numbers
-  const int trigPin = 2;
-  const int echoPin = 3;
+  const int trigPin = 0;
+  const int echoPin = 1;
   NewPing sonar(trigPin, echoPin);   //  An instance of the NewPing class
   // defines variables
   long duration;
@@ -37,7 +37,7 @@ Adafruit_VL53L0X lox = Adafruit_VL53L0X();
   //const int lowpin_f=4;
   //const int highpin_f=5;
   //PIR x1
-  int pir_input_b=8;
+  int pir_input_b=9;
   int pir_val_b;
   int stat_b=LOW;
   int cont_mov_b=0;
@@ -196,7 +196,11 @@ else if(state_l==LOW){
   Serial.println(cont_b_total);//Serial.print(",");
   
   // Here we include all the variables, create a string and send it over serial to the NodeMCU.
-  String package=(String("Data: ")+String(value_sound1)+','+String(stat1)+','+String(value_sound2)+','+String(stat2)+','+String(distance_sonic)+','+String(measure.RangeMilliMeter)+','+String(UserPos)+','+String(back_pos)+','+String(cont_mov_b)+','+String(cont_b_pos)+','+String(cont_b_total)+','+String("UP")+','+String(0)+','+String(0)+','+String(0)+','+String("UP")+','+String(0)+','+String(0)+','+String(0)+'\n');
+  String package=(String("Data: ")+String(value_sound1)+','+String(stat1)+','+String(value_sound2)+','+String(stat2)+','+
+                   String(distance_sonic)+','+String(measure.RangeMilliMeter)+','+String(UserPos)+','+
+                   String(back_pos)+','+String(cont_mov_b)+','+String(cont_b_pos)+','+String(cont_b_total)+','+
+                   String("-")+','+String(0)+','+String(0)+','+String(0)+','+
+                   String("-")+','+String(0)+','+String(0)+','+String(0)+'\n');
   Serial1.print(package);
   //Serial.print(package);
   delay(100); 
