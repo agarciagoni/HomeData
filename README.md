@@ -17,11 +17,11 @@ At the moment the sensors we are using include: (*plus some sensors on their way
    - terMITes x1 (Measuring Temperature, Humidity and Light)
    
    The arduino code is set to gather the data from the sensors, preprocess it and communicate over serial with a NodeMCU. Then, through UDP communication the data is shared with a computer.
-   ![Diagram](ConnectionsDiagram.png)
-   
+      
    In the host omputer, coded in python, the UDP package are received, the data saved into csv format to be used for future analysis and visualisation.
    
    More info about the visualisation here: [HomaData Visuals](https://github.com/agarciagoni/HomeData-Visuals)
    
    As more sensors and documentation included, the codes will be updated!
    
+   ![Diagram](ConnectionsDiagram.png)
