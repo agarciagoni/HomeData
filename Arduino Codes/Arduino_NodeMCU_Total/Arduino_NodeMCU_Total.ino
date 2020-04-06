@@ -4,6 +4,7 @@
  *  Script to try to  several sensors in the Piccolo Kitchen
  *  Sensors included and prepared for use in the kitchen, with its cables: 
  *  - Ultrasonic Sensor Y401
+ *  - Maxbotix Ultrasonic range finder EZ
  *  - VL53L0X distance_sonic sensorp
  *  - Sound sensor x2 (2nd with 100k resistor and no R3).
  *  - PIR sensor x3
@@ -19,13 +20,16 @@ Adafruit_VL53L0X lox = Adafruit_VL53L0X();
 
 ////   Ultrasonic sensor
   // defines pins numbers
-  const int trigPin = 2;
-  const int echoPin = 3;
+  const int trigPin = 1;
+  const int echoPin = 0;
   NewPing sonar(trigPin, echoPin);   //  An instance of the NewPing class
   // defines variables
   long duration;
   int distance_sonic;
-    
+//Sonar
+  int pin_sonar = 14;      
+  int distance_sonar;
+  int pulse_sonar;
 //Cabinets
   const int lowpin_b=10;
   const int medpin_b=11;
@@ -35,7 +39,7 @@ Adafruit_VL53L0X lox = Adafruit_VL53L0X();
   int state_l=0;
   String back_pos="LOW";
   //PIR x1
-  int pir_input_b=8;
+  int pir_input_b=9;
   int pir_val_b;
   int stat_b=LOW;
   int cont_mov_b=0;
@@ -43,13 +47,13 @@ Adafruit_VL53L0X lox = Adafruit_VL53L0X();
   int inter_b_pos=0;
 
   //Front Right
-  const int downpin_fr=14;
-  const int uppin_fr=15;
+  const int downpin_fr=6;
+  const int uppin_fr=7;
   int state_fr_u=0;
   int state_fr_d=0;
   String front_right_pos="LOW";
   //PIR x1
-  int pir_input_fr=13;
+  int pir_input_fr=5;
   int pir_val_fr;
   int stat_fr=LOW;
   int cont_mov_fr=0;
@@ -57,13 +61,13 @@ Adafruit_VL53L0X lox = Adafruit_VL53L0X();
   int inter_fr_pos=0;
 
   //Front Left
-  const int downpin_fl=17;
-  const int uppin_fl=18;
+  const int downpin_fl=3;
+  const int uppin_fl=4;
   int state_fl_u=0;
   int state_fl_d=0;
   String front_left_pos="LOW";
   //PIR x1
-  int pir_input_fl=16;
+  int pir_input_fl=2;
   int pir_val_fl;
   int stat_fl=LOW;
   int cont_mov_fl=0;
@@ -97,6 +101,7 @@ pinMode(sound_2,INPUT);
 ////distance_sonic
 pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
 pinMode(echoPin, INPUT); // Sets the echoPin as an Input
+pinMode(pin_sonar, INPUT); // Sets the sonar pin as an Input
 //PIR
 pinMode(pir_input_b,INPUT);
 pinMode(pir_input_fr,INPUT);
@@ -149,6 +154,7 @@ void loop() {
     stat2="L";
   }
   Serial.print(stat2);Serial.print(',');
+  
 //Distance sensor time to travel
   VL53L0X_RangingMeasurementData_t measure;
   lox.rangingTest(&measure, false); // pass in 'true' to get debug data printout!
@@ -158,6 +164,7 @@ void loop() {
 //  } else {
 //    Serial.print(" out of range ");
 //  }
+
 //Ultrasonic
  distance_sonic = sonar.ping_cm();           //  Ask NewPing to trigger, fetch echo and calculate distance in cm
 ////   Prints the distance on the Serial Monitor
@@ -165,18 +172,25 @@ Serial.print(distance_sonic);Serial.print(",");
 Serial.print(measure.RangeMilliMeter);Serial.print(",");
 //  
 
+//Sonar
+pulse_sonar=pulseIn(pin_sonar,HIGH); // read pulse distance
+distance_sonar=25.4*pulse_sonar/147; //from the DataSheet 147us/inch., from pulse distance to mm.
+////   Prints the distance on the Serial Monitor
+Serial.print(distance_sonic);Serial.print(",");
+Serial.print(distance_sonar);Serial.print(",");
+Serial.print(measure.RangeMilliMeter);Serial.print(",");
 
 // User Position
 
-  if (distance_sonic <= 50 && distance_sonic != 0 &&measure.RangeMilliMeter >=500){
+  if (distance_sonic <= 50 && distance_sonic != 0){ //&&measure.RangeMilliMeter >=500){
     //Serial.print("Position: ");
     UserPos="LS";
   }
-  else if (measure.RangeMilliMeter <=500 && distance_sonic >= 50 || distance_sonic==0){
+  else if (measure.RangeMilliMeter <=500){ //&& distance_sonic >= 50 || distance_sonic==0){
     //Serial.print("Position: "); 
      UserPos="RS";
   }
-  else if (measure.RangeMilliMeter <=500 && distance_sonic!=0 && distance_sonic <= 50){
+  else if (distance_sonar<=500){  //(measure.RangeMilliMeter <=500 && distance_sonic!=0 && distance_sonic <= 50){
      //Serial.print("Position: "); 
       UserPos="CE";
   }
@@ -305,7 +319,7 @@ else if (state__fl_d==LOW){
   //NodeMCU COMMUNICATION
   // Here we include all the variables, create a string and send it over serial to the NodeMCU.
   
-  String package=(String("Data: ")+String(value_sound1)+','+String(stat1)+','+String(value_sound2)+','+String(stat2)+','+String(distance_sonic)+','+String(measure.RangeMilliMeter)+','+String(UserPos)+','+
+  String package=(String("Data: ")+String(value_sound1)+','+String(stat1)+','+String(value_sound2)+','+String(stat2)+','+String(distance_sonic)+','+String(distance_sonar)+','+String(measure.RangeMilliMeter)+','+String(UserPos)+','+
                   String(back_pos)+','+String(cont_mov_b)+','+String(inter_b_pos)+','+String(inter_b_total)+','+
                   String(front_right_pos)+','+String(cont_mov_fr)+','+String(inter_fr_pos)+','+String(inter_fr_total)+','+
                   String(front_left_pos)+','+String(cont_mov_fl)+','+String(inter_fl_pos)+','+String(inter_fl_total)+'\n');
