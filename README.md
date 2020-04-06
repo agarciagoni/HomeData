@@ -9,7 +9,7 @@ The folder *data*  contains samble data recorded from different tests.
 At the moment the sensors we are using include: (*plus some sensors on their way!, included in the arduino total code*)
 
    - Ultrasonic Sensor Y401
-  *- Matbotix Ultrasonic range finder EZ*
+   - *Matbotix Ultrasonic range finder EZ*
    - VL53L0X distance_sonic sensor
    - Sound sensor SEN-12642 x2
    - PIR sensor x1 *x3*
