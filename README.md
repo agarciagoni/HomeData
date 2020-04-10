@@ -24,5 +24,4 @@ At the moment the sensors we are using include: (*plus some sensors on their way
    
    As more sensors and documentation included, the codes will be updated!
    
-   ![Diagram](ConnectionsDiagram.png)
-   <img src="ConnectionsDiagram.png" width="500" height="500" align="center">
+   <img src="ConnectionsDiagram.png" width="650" height="650" align="center">
