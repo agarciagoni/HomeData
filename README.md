@@ -23,5 +23,6 @@ At the moment the sensors we are using include: (*plus some sensors on their way
    More info about the visualisation here: [HomaData Visuals](https://github.com/agarciagoni/HomeData-Visuals)
    
    As more sensors and documentation included, the codes will be updated!
-   
-   <img src="ConnectionsDiagram.png" width="650" height="650" align="center">
+   <p align="center" >
+   <img src="ConnectionsDiagram.png" width="650" height="650">
+   </p>
